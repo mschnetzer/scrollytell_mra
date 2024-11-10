@@ -1,0 +1,364 @@
+---
+title: "Macroeconomic effects of a declining wage share"
+author: 
+  - name: Quirin Dammerer
+    orcid: 0000-0002-7061-971X
+  - name: Ludwid List
+    orcid: 0000-0003-3824-1363
+  - name: Miriam Rehm
+    orcid: 0000-0003-3174-4304
+  - name: Matthias Schnetzer
+    orcid: 0000-0002-1463-1271
+doi: 10.1111/joes.12614
+title-block-style: default
+lang: en
+bibliography: data/mra.bib
+csl: data/mra.csl
+filters:
+    - openlinksinnewpage
+format: 
+  closeread-html:
+    css: ws.css
+    code-tools: false
+    fig-format: svg
+    toc: false
+    linkcolor: tomato
+---
+
+```{r packages}
+#| echo: false
+#| message: false
+library(tidyverse)
+library(ggflags)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+```
+
+# {.page-columns .page-full}
+
+## What is this paper all about?
+
+Is a declining wage share associated with increasing ('profit-led') or decreasing ('wage-led') economic growth? This paper reviews the literature on the relationship between the functional income distribution and aggregate demand. It conducts a meta-regression analysis of 33 studies with 578 estimates for total and domestic demand, covering up to 163 years and 59 countries and regions. Our results suggest that, on average and across all countries, total demand is predominantly profit-led and domestic demand mainly wage-led. We find mixed evidence for publication selectivity in this literature, which may affect the size but not the direction of the results.
+
+## How have wage shares developed?
+
+Most industrial countries experienced a long-term fall in their wage shares between the 1970s and the Great Recession of 2008 [@autor2017; @karabarbounis2013]. The literature has identified financialisation, globalisation, technological change, the rise in market power of firms, and welfare state retrenchments as key determinants of the evolution of the wage share [@stockhammer2017].
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{#cr-ws-all}
+```{r wageshares}
+#| output: 'asis'
+#| fig-asp: 1.2
+#| warning: false
+load("data/wsdata.RData")
+wsdata <- wsdata |> 
+  mutate(iso2c = tolower(countrycode::countrycode(Country, origin = "country.name.en", destination = "iso2c")))
+
+
+wsplot <- 
+wsdata |> 
+  ggplot(aes(x=year, y=value, group = Country, color = Country)) +
+  geom_line(linewidth = 1) +
+  scale_color_manual(values = futurevisions::futurevisions("grand_tour")) +
+  scale_y_continuous(limits = c(55,80), breaks = seq(50,80,10),
+                     labels = scales::percent_format(scale = 1)) +
+  labs(y = "Wage share as % of GDP at factor cost", x = "",
+  caption = "Source: AMECO [ALCD2]") +
+  theme_minimal(base_family = "Barlow Condensed", base_size = 18) +
+  theme(legend.position = "none",
+        panel.grid.minor = element_blank(),
+        plot.caption = element_text(size = 12),
+        panel.grid.major = element_line(linewidth = 0.2))
+
+wsplot
+```
+:::
+
+:::{#cr-ws-usa}
+```{r ws-usa}
+#| output: 'asis'
+#| fig-asp: 1.2
+#| warning: false
+wsplot + 
+  geom_rect(aes(xmin=as.Date(-Inf), xmax=as.Date(Inf), ymin=-Inf, ymax=Inf), 
+  fill = "white", color=NA, alpha = 0.03) +
+  geom_line(
+    linewidth = 1.5, 
+    data = wsdata |> filter(iso2c == "us")) +
+  geom_flag(
+    aes(country = iso2c), size = 10,
+    data = wsdata |> filter(iso2c == "us", year %in% range(year)))
+```
+:::
+
+:::{#cr-ws-uk}
+```{r ws-uk}
+#| output: 'asis'
+#| fig-asp: 1.2
+#| warning: false
+wsplot + 
+  geom_rect(aes(xmin=as.Date(-Inf), xmax=as.Date(Inf), ymin=-Inf, ymax=Inf), 
+  fill = "white", color=NA, alpha = 0.03) +
+  geom_line(
+    linewidth = 1.5,
+    data = wsdata |> filter(iso2c == "gb")) +
+  geom_flag(
+    aes(country = iso2c), size = 10,
+    data = wsdata |> filter(iso2c == "gb", year %in% range(year)))
+```
+:::
+
+:::{#cr-ws-it}
+```{r ws-it}
+#| output: 'asis'
+#| fig-asp: 1.2
+#| warning: false
+wsplot + 
+  geom_rect(aes(xmin=as.Date(-Inf), xmax=as.Date(Inf), ymin=-Inf, ymax=Inf), 
+  fill = "white", color=NA, alpha = 0.03) +
+  geom_line(
+    linewidth = 1.5,
+    data = wsdata |> filter(iso2c == "it")) +
+  geom_flag(
+    aes(country = iso2c), size = 10,
+    data = wsdata |> filter(iso2c == "it", year %in% range(year)))
+```
+:::
+
+@cr-ws-all
+
+The evolution of adjusted wage shares for the Group of Seven (G7) countries shows a downward trend. Since the 2000s, however, we can see a stabilization at a lower level and even increases in some countries. @cr-ws-all
+
+The adjusted wage share in the US has been declining in the long run. While economists often blame skill-biased technological change for this trend, i.e. increases in the productivity of capital, the 2000s saw declining productivity growth *and* a decreasing labour share. @cr-ws-usa
+
+Italy features the strongest decline of the wage share in the G7 countries since the 1960s. The erosion of the wage share was stronger in Mediterranean countries than in the US or Japan. @cr-ws-it
+
+UK bucks the trend and exhibits a remarkably stable wage share aside from some fluctuations. Stability in the labour share suggests that wages have, on average, kept pace with GDP growth. However, GDP growth was moderate in UK and so was wage growth. @cr-ws-uk
+
+:::
+
+
+## A brief theoretical background
+
+Theoretical models of the relationship between the functional distribution of income and aggregate demand were pioneered by economists affiliated with the University of Cambridge such as Michal @kalecki1971, Nicholas @KaldorModelEconomicGrowth1957, and Joan @robinson:1956. The quintessence of the early models is that the growth of demand in a (closed) economy reacts positively to an increase in the wage share, which the current literature terms "wage-led growth" [@stockhammer2017].
+
+@bhadurimarglin1990 developed a model of different growth regimes. Investment $I$ is a function of autonomous investment $g_0$, capacity utilization $u$, and expected profitability,that is, the profit share $\pi$:
+
+$$ 
+g_i = g_0 + \alpha\pi + \beta u
+$$
+
+As savings arise only as a fraction $s$ of profits $\pi u$, the balanced growth rate in these models ($g_S = g_I$) yields $s\pi u = g_0 + \alpha\pi + \beta u$. The crucial question is how growth reacts on changes in the profit (wage) share:
+
+$$
+\frac{\partial g^*}{\partial \pi} = \frac{s(\alpha\pi - \beta u^*)}{s\pi - \beta} 
+\begin{cases}
+  > 0 & \text{if } \alpha\pi > \beta u^* \text{ (profit-led)} \\
+  < 0 & \text{if } \alpha\pi < \beta u^* \text{ (wage-led)}
+\end{cases}
+$$
+
+In the model, the total domestic demand effect is ambiguous due to a possible negative or positive effect of a change in the wage share on investment. It depends whether the impact of an increasing profit share exceeds the impact of decreasing capacity utilization on investment. In an open economy, the total effect further depends on net exports, which are assumed to be negatively related to an increase in the wage share. This is because a rising wage share results in increased imports and, due to higher labor costs and lower competitiveness, lower exports. Analytically, an economy can thus be either *wage-led* or *profit-led*.
+
+## What is the empirical strategy of the paper?
+
+We conduct a meta regression analysis based on a total of 33 empirical studies that estimate the link between the functional income distribution and aggregate demand. Our database comprises a total of 578 estimates whereof 360 are based on domestic demand (i.e. consumption plus investment) and 218 on total demand (i.e. domestic demand plus net exports). 
+
+:::{.cr-section layout="overlay-center"}
+
+:::{#cr-map}
+```{r map}
+#| output: 'asis'
+#| fig-width: 18
+#| fig-height: 9
+#| warning: false
+load("data/map.RData")
+
+welt <- st_transform(welt, crs = 3857)
+
+welt |> filter(geounit != "Antarctica") |> 
+  ggplot(aes(fill = num.group)) + 
+  geom_sf(color = "grey60", linewidth = 0.15) +
+  scale_fill_manual(values = futurevisions::futurevisions("grand_tour"),
+                    name="Number of\n estimates", na.value = "white") +
+  coord_sf() +
+  theme_minimal(base_family = "Barlow Condensed", base_size = 24) +
+  theme(axis.text = element_blank(),
+        panel.grid.major = element_blank(),
+        plot.margin = margin(l=-.5, t=-5, unit="cm"),
+        legend.position = "inside",
+        legend.position.inside = c(0.15,0.2),
+        legend.key.size = unit(0.5,"cm"),
+        legend.box.background = element_rect(fill = "white", linewidth = 0.2)) +
+  labs(x = NULL, y = NULL)
+```
+:::
+
+The studies in our sample cover a wide regional variation. In total, there are estimates for 59 countries and regions in our database. @cr-map 
+
+High-income countries, especially the United States and European countries are well covered in the database. OECD countries make up for 83% of our estimates. [@cr-map]{pan-to="30%,30%" scale-by="2.5"}
+
+While South America, South and South-East Asia, and the Middle East are also covered by the empirical literature... [@cr-map]{pan-to="-60%,10%" scale-by="3.5"}
+
+...the most notable global gaps are African countries and the former Soviet Union, for which there are almost no estimates available. [@cr-map]{pan-to="-10%,-20%" scale-by="3"}
+
+@cr-map
+:::
+
+Meta-regression analysis (MRA) is a commonly applied approach to synthesize research from multiple empirical studies. MRA aims to answer three underlying questions: First, is there publication selection bias, since studies reporting statistically significant findings are more likely to be published in peer-reviewed journals?  Second, if one controls for publication selection bias, does the primary literature still find a genuine economic effect? Finally, which covariates explain part of the variation in effect sizes between studies?
+
+The standard approach in MRA is to regress effect sizes on the standard error in the FAT-PET (Funnel-Asymmetry Precision-Effect Test) specification, and the variance in the PEESE (Precision-Effect Estimate with Standard Error) specification. Unfortunately, a large body of the literature covered in our study does not provide standard errors. The inverse square root of the sample size is considered a feasible alternative for missing standard errors in the MRA literature [@stanley2012]. The FAT-PET regression equation denotes:
+
+$$
+e_{ij} = \beta_0 + \beta_1 SE_{ij} + \beta_2 X_{ij} + \varepsilon_{ij}
+$$
+
+where $e_{ij}$ is estimate $i$ for the marginal effect of a rising wage share on aggregate demand in study $j$, $\beta_0$ serves as an approximate measure for the "true" effect size adjusted for publication selection bias, $SE$ is the standard error (or an alternative measure for precision), and $X$ is a vector of controls. We group control variables into (1) publication characteristics, (2) estimation strategy, (3) meta-regression controls for time and space, (4) controls used by the studies in the investment or net export functions, and (5) other controls.
+
+::: {.callout-tip collapse="true"}
+## Full list of variables
+:::{.tbl-tip}
+| Variable | Description |
+|----------|-------------|
+| Effect size (dep. variable) | Marginal effect between the functional income distribution and aggregate demand |
+| [Published]{.hl .hl-blue} | Study published in peer-reviewed journal |
+| [Insignificant estimate]{.hl .hl-blue} | Estimate contains insignificant effects for demand components |
+| [Tackling endogeneity]{.hl .hl-red} | Estimation strategy is suitable for addressing endogeneity |
+| [Simultaneous estimation]{.hl .hl-red} | Simultaneous vs. additive estimation |
+| [Mean marginal effect]{.hl .hl-red} | Marginal effect is calculated at the mean over the total observation period |
+| [Quarterly data]{.hl .hl-red} | Estimate is based on quarterly data |
+| [Capacity utilization]{.hl .hl-red} | Dependent variable is capacity utilization rather than GDP |
+| [Real wages]{.hl .hl-red} | Real wages are used as measure of functional distribution |
+| [Early observation period]{.hl .hl-green} | Average year of observation period is before 1990 |
+| [OECD country]{.hl .hl-green} | Estimate is for an OECD country |
+| [Profits (in I)]{.hl .hl-brown} | Estimation controls for profits in I (profit share or profit rate) |
+| [Interest rate (in I)]{.hl .hl-brown} | Estimation controls for interest rate in I |
+| [Demand (in X)]{.hl .hl-brown} | Estimation controls for demand in X |
+| [Profits (in X)]{.hl .hl-brown} | Estimation controls for profits in X |
+| [Unit labor costs (in X)]{.hl .hl-brown} | Estimation controls for unit labor costs in X |
+| [Exchange rate (in X)]{.hl .hl-brown} | Estimation controls for the exchange rate in X |
+| [Government spending]{.hl .hl-cyan} | Estimation controls for government spending |
+| [Debt and credit]{.hl .hl-cyan} | Estimation controls for debt and credit in the consumption or investment function |
+| [Personal inequality]{.hl .hl-cyan} | Estimation controls for a measure of personal inequality |
+| [Wealth effects]{.hl .hl-cyan}| Estimation controls for wealth effects |
+
+: {tbl-colwidths="[25,75]"}
+:::
+:::
+
+
+## What are the main results of the paper?
+
+Funnel plots show the estimated effect sizes and their precision from the literature for both total demand and domestic demand. As expected, estimates with a higher precision are clustered, while less precise estimates are more dispersed and some outliers are present.
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{#cr-hist-tot}
+```{r hist-tot}
+#| output: 'asis'
+#| fig-asp: 1
+#| warning: false
+load("data/mra.RData")
+
+mean.tot <- data |> summarise(mean(es_num, na.rm=T)) |> pull()
+mean.dom <- data |> summarise(mean(dom_demand, na.rm=T)) |> pull()
+
+data  |> filter(!is.na(es_num)) |> 
+  ggplot() +
+  geom_point(aes(x = es_num, y = precision_obs), alpha = 0.4, 
+             stroke = 0.15, size = 4, color = "cornflowerblue") + 
+  geom_vline(xintercept = 0, color = "black", linewidth = 0.2, linetype = "9f") + 
+  geom_vline(xintercept = mean.tot, color = "deepskyblue3", linewidth = 0.4) + 
+  scale_y_continuous(limits = c(0, 45)) +
+  scale_x_continuous(limits = c(-2, 3.5), breaks = seq(-2, 3, 1)) +
+  annotate("text", y = 40, x = mean.tot - 0.1, size = 6, hjust = 1,
+            color = "deepskyblue3",
+            label = paste0("Mean: ",round(mean.tot, 2)), family = "Barlow Condensed") +
+  labs(x = "Estimates for total demand", y = expression(sqrt(n))) +
+  theme_minimal(base_family = "Barlow Condensed", base_size = 18) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(linewidth = 0.2))
+```
+:::
+
+:::{#cr-hist-dom}
+```{r hist-dom}
+#| output: 'asis'
+#| fig-asp: 1
+#| warning: false
+data  |> filter(!is.na(dom_demand)) |> 
+  ggplot() +
+  geom_point(aes(x = dom_demand, y = precision_obs), alpha = 0.4, 
+             stroke = 0.15, size = 4, color = "firebrick") + 
+  geom_vline(xintercept = 0, color = "black", linewidth = 0.2, linetype = "9f") + 
+  geom_vline(xintercept = mean.dom, color = "firebrick", linewidth = 0.4) + 
+  scale_y_continuous(limits = c(0, 45)) +
+  scale_x_continuous(limits = c(-2, 3.5), breaks = seq(-2, 3, 1)) +
+  annotate("text", y = 40, x = mean.dom + 0.1, size = 6, hjust = 0, color = "firebrick",
+           label = paste0("Mean: ",round(mean.dom, 2)), family = "Barlow Condensed") +
+  labs(x = "Estimatess for domestic demand", y = expression(sqrt(n))) +
+  theme_minimal(base_family = "Barlow Condensed", base_size = 18) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(linewidth = 0.2))
+```
+:::
+
+@cr-hist-tot
+
+For total demand, the right-hand side of the distribution seems thinly populated, although almost half of the estimates are weakly positive (102 of 218 estimates). On average, total demand growth is profit-led with a mean estimate of about −0.14, although the lack of symmetry indicates possible publication selection bias in favor of profit-led results. @cr-hist-tot
+
+For domestic demand, there is a positive correlation between the wage share and demand in the majority of estimates. Domestic demand is estimated to be wage-led in 71% of our sample with a mean estimate of 0.27. This conforms with the consensus in previous literature reviews. @cr-hist-dom
+
+@cr-hist-dom
+
+:::
+
+The table below shows selected results from the MRA. For the total demand sample, the results indicate the presence of a statistically significant publication selection bias (see $\beta_1$). Correcting for this bias, the FAT-PET fails to detect a statistically significant underlying effect. The PEESE confirms the statistically significant bias in favour of profit-led results, but also suggests that the mean beyond bias is statistically significantly profit-led. The mean beyond bias (-0.037) is slightly less negative than the sample mean (-0.14), which indicates that the negative effect of a change in the wage share on total demand would be smaller without publication selectivity.
+
+:::{.tbl-classic}
+|   | FAT-PET<br>Total demand | PEESE<br>Total demand | FAT-PET<br>Domestic demand | PEESE<br>Domestic demand |
+|---|:------:|:-----:|:------:|:------------:|
+| Constant | -0.025	(0.021) | -0.037** (0.017) | 0.291*** (0.068) | 0.316*** (0.049) |
+| $\beta_1$ | -0.675** (0.313) | -4.181*** (1.592) | 0.006 (0.539) | -2.868 (2.132) |
+| Sample mean | 0.140 | 0.140 | 0.272 | 0.272 |
+| Observations | 218 | 218 | 360 | 360 |
+: Regression results from MRA {tbl-colwidths="[16,21,21,21,21]"}
+:::
+
+:::{.tbl-note}
+Robust standard errors (in parentheses) are clustered at the study level.<br>*** p < 0.01, ** p < 0.5, * p < 0.1 
+:::
+
+For domestic demand, we find some genuine underlying effect for both FAT-PET and PEESE. The adjusted effect sizes of about 0.29 (FAT-PET) and 0.32 (PEESE) are higher than the sample mean of about 0.27, which confirms the funnel plot’s finding that domestic demand is wage-led. However, in contrast to total demand, we cannot detect statistically significant publication bias for this literature. 
+
+In our paper, we check robustness of the results with various specifications. First, we estimate a linear mixed effects model, which captures both within- and between-study level heterogeneity in effect sizes. Second, we use non-linear tests of publication bias as suggested by @ioannidisea2017 and @andrews:2019. Third, we exclude outliers and re-estimate our models. 
+
+## What are the main conclusions from this paper?
+
+Our results support the findings from previous literature reviews in concluding that the link between functional income distribution and demand does, indeed, exist. The primary literature suggests total demand to be predominantly profit-led despite indications for missing wage-led estimates in the funnel plot. Domestic demand is found to be wage-led on average.
+
+These findings contribute to the growth models literature: After Fordist accumulation regimes were superseded by finance-dominated accumulation regimes, the long-term fall in wage shares in many industrialized countries entailed challenges to stabilize aggregate demand. While some countries were able to increase their international competitiveness and pursue an export strategy, others compensated falling labour shares with a rise in private debt to maintain demand. This led to current account imbalances that contributed to financial and economic crises. The relationship between the functional distribution of income and aggregate demand is thus also relevant for future economic stabilization.
+
+\
+
+#### References
+
+::: {#refs style="font-size:1rem;"}
+:::
+
+\
+
+# {#info} 
+This document was created with [Quarto](https://quarto.org), [closeread](https://closeread.netlify.app) and [R](https://www.r-project.org). 
+
+\
+
+The webpage is based on an article written by Quirin Dammerer, Ludwig List, Miriam Rehm and Matthias Schnetzer that has been published in the [Journal of Economic Surveys](https://doi.org/10.1111/joes.12614).
+
+\
+
+{{< fa envelope >}} [matthias.schnetzer@akwien.at](mailto:matthias.schnetzer (at) akwien.at) &emsp; {{< fa globe >}} [mschnetzer.github.io](https://mschnetzer.github.io/) &emsp; {{< fa brands twitter >}} [matschnetzer](https://x.com/matschnetzer)
