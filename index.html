@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Quirin Dammerer">
+<meta name="author" content="Ludwid List">
+<meta name="author" content="Miriam Rehm">
+<meta name="author" content="Matthias Schnetzer">
+
+<title>Macroeconomic effects of a declining wage share</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap-247c20126170e7829d717ecba89f93fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="index_files/libs/quarto-contrib/intersection-observer-polyfill-1.0.0/intersection-observer.js"></script>
+<script src="index_files/libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
+<script src="index_files/libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
+<link href="index_files/libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<meta cr-debug-mode="false">
+<meta cr-remove-header-space="false">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="_extensions/qmd-lab/closeread/closeread.css">
+<link rel="stylesheet" href="ws.css">
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+
+<main class="content page-columns page-full column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Macroeconomic effects of a declining wage share</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Quirin Dammerer <a href="https://orcid.org/0000-0002-7061-971X" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+             <p>Ludwid List <a href="https://orcid.org/0000-0003-3824-1363" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+             <p>Miriam Rehm <a href="https://orcid.org/0000-0003-3174-4304" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+             <p>Matthias Schnetzer <a href="https://orcid.org/0000-0002-1463-1271" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+  </div>
+    
+  
+    
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/10.1111/joes.12614">10.1111/joes.12614</a>
+      </p>
+    </div>
+  </div>
+  </div>
+  
+
+
+</header>
+
+
+<section id="section" class="level1 page-columns page-full">
+<h1 class="page-columns page-full"></h1>
+<section id="what-is-this-paper-all-about" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-this-paper-all-about">What is this paper all about?</h2>
+<p>Is a declining wage share associated with increasing (‘profit-led’) or decreasing (‘wage-led’) economic growth? This paper reviews the literature on the relationship between the functional income distribution and aggregate demand. It conducts a meta-regression analysis of 33 studies with 578 estimates for total and domestic demand, covering up to 163 years and 59 countries and regions. Our results suggest that, on average and across all countries, total demand is predominantly profit-led and domestic demand mainly wage-led. We find mixed evidence for publication selectivity in this literature, which may affect the size but not the direction of the results.</p>
+</section>
+<section id="how-have-wage-shares-developed" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="how-have-wage-shares-developed">How have wage shares developed?</h2>
+<p>Most industrial countries experienced a long-term fall in their wage shares between the 1970s and the Great Recession of 2008 <span class="citation" data-cites="autor2017 karabarbounis2013">(<a href="#ref-autor2017" role="doc-biblioref">Autor et al., 2017</a>; <a href="#ref-karabarbounis2013" role="doc-biblioref">Karabarbounis/Neiman, 2013</a>)</span>. The literature has identified financialisation, globalisation, technological change, the rise in market power of firms, and welfare state retrenchments as key determinants of the evolution of the wage share <span class="citation" data-cites="stockhammer2017">(<a href="#ref-stockhammer2017" role="doc-biblioref">Stockhammer, 2017</a>)</span>.</p>
+<div class="cr-section column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-ws-all">
+<div class="narrative">
+
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-ws-all">
+<div class="narrative">
+<p>The evolution of adjusted wage shares for the Group of Seven (G7) countries shows a downward trend. Since the 2000s, however, we can see a stabilization at a lower level and even increases in some countries.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-ws-usa">
+<div class="narrative">
+<p>The adjusted wage share in the US has been declining in the long run. While economists often blame skill-biased technological change for this trend, i.e.&nbsp;increases in the productivity of capital, the 2000s saw declining productivity growth <em>and</em> a decreasing labour share.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-ws-it">
+<div class="narrative">
+<p>Italy features the strongest decline of the wage share in the G7 countries since the 1960s. The erosion of the wage share was stronger in Mediterranean countries than in the US or Japan.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-ws-uk">
+<div class="narrative">
+<p>UK bucks the trend and exhibits a remarkably stable wage share aside from some fluctuations. Stability in the labour share suggests that wages have, on average, kept pace with GDP growth. However, GDP growth was moderate in UK and so was wage growth.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-ws-all" class="sticky">
+<p><img src="index_files/figure-html/wageshares-1.svg" class="img-fluid"></p>
+</div>
+<div id="cr-ws-usa" class="sticky">
+<p><img src="index_files/figure-html/ws-usa-1.svg" class="img-fluid"></p>
+</div>
+<div id="cr-ws-uk" class="sticky">
+<p><img src="index_files/figure-html/ws-uk-1.svg" class="img-fluid"></p>
+</div>
+<div id="cr-ws-it" class="sticky">
+<p><img src="index_files/figure-html/ws-it-1.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="a-brief-theoretical-background" class="level2">
+<h2 class="anchored" data-anchor-id="a-brief-theoretical-background">A brief theoretical background</h2>
+<p>Theoretical models of the relationship between the functional distribution of income and aggregate demand were pioneered by economists affiliated with the University of Cambridge such as Michal <span class="citation" data-cites="kalecki1971">Kalecki (<a href="#ref-kalecki1971" role="doc-biblioref">1971</a>)</span>, Nicholas <span class="citation" data-cites="KaldorModelEconomicGrowth1957">Kaldor (<a href="#ref-KaldorModelEconomicGrowth1957" role="doc-biblioref">1957</a>)</span>, and Joan <span class="citation" data-cites="robinson:1956">Robinson (<a href="#ref-robinson:1956" role="doc-biblioref">1956</a>)</span>. The quintessence of the early models is that the growth of demand in a (closed) economy reacts positively to an increase in the wage share, which the current literature terms “wage-led growth” <span class="citation" data-cites="stockhammer2017">(<a href="#ref-stockhammer2017" role="doc-biblioref">Stockhammer, 2017</a>)</span>.</p>
+<p><span class="citation" data-cites="bhadurimarglin1990">Bhaduri/Marglin (<a href="#ref-bhadurimarglin1990" role="doc-biblioref">1990</a>)</span> developed a model of different growth regimes. Investment <span class="math inline">\(I\)</span> is a function of autonomous investment <span class="math inline">\(g_0\)</span>, capacity utilization <span class="math inline">\(u\)</span>, and expected profitability,that is, the profit share <span class="math inline">\(\pi\)</span>:</p>
+<p><span class="math display">\[
+g_i = g_0 + \alpha\pi + \beta u
+\]</span></p>
+<p>As savings arise only as a fraction <span class="math inline">\(s\)</span> of profits <span class="math inline">\(\pi u\)</span>, the balanced growth rate in these models (<span class="math inline">\(g_S = g_I\)</span>) yields <span class="math inline">\(s\pi u = g_0 + \alpha\pi + \beta u\)</span>. The crucial question is how growth reacts on changes in the profit (wage) share:</p>
+<p><span class="math display">\[
+\frac{\partial g^*}{\partial \pi} = \frac{s(\alpha\pi - \beta u^*)}{s\pi - \beta}
+\begin{cases}
+  &gt; 0 &amp; \text{if } \alpha\pi &gt; \beta u^* \text{ (profit-led)} \\
+  &lt; 0 &amp; \text{if } \alpha\pi &lt; \beta u^* \text{ (wage-led)}
+\end{cases}
+\]</span></p>
+<p>In the model, the total domestic demand effect is ambiguous due to a possible negative or positive effect of a change in the wage share on investment. It depends whether the impact of an increasing profit share exceeds the impact of decreasing capacity utilization on investment. In an open economy, the total effect further depends on net exports, which are assumed to be negatively related to an increase in the wage share. This is because a rising wage share results in increased imports and, due to higher labor costs and lower competitiveness, lower exports. Analytically, an economy can thus be either <em>wage-led</em> or <em>profit-led</em>.</p>
+</section>
+<section id="what-is-the-empirical-strategy-of-the-paper" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-is-the-empirical-strategy-of-the-paper">What is the empirical strategy of the paper?</h2>
+<p>We conduct a meta regression analysis based on a total of 33 empirical studies that estimate the link between the functional income distribution and aggregate demand. Our database comprises a total of 578 estimates whereof 360 are based on domestic demand (i.e.&nbsp;consumption plus investment) and 218 on total demand (i.e.&nbsp;domestic demand plus net exports).</p>
+<div class="cr-section column-screen overlay-center">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-map">
+<div class="narrative">
+<p>The studies in our sample cover a wide regional variation. In total, there are estimates for 59 countries and regions in our database.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-pan-to="30%,30%" data-focus-on="cr-map" data-scale-by="2.5">
+<div class="narrative">
+<p>High-income countries, especially the United States and European countries are well covered in the database. OECD countries make up for 83% of our estimates.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-pan-to="-60%,10%" data-focus-on="cr-map" data-scale-by="3.5">
+<div class="narrative">
+<p>While South America, South and South-East Asia, and the Middle East are also covered by the empirical literature…</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-pan-to="-10%,-20%" data-focus-on="cr-map" data-scale-by="3">
+<div class="narrative">
+<p>…the most notable global gaps are African countries and the former Soviet Union, for which there are almost no estimates available.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-map">
+<div class="narrative">
+
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-map" class="sticky">
+<p><img src="index_files/figure-html/map-1.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+<p>Meta-regression analysis (MRA) is a commonly applied approach to synthesize research from multiple empirical studies. MRA aims to answer three underlying questions: First, is there publication selection bias, since studies reporting statistically significant findings are more likely to be published in peer-reviewed journals? Second, if one controls for publication selection bias, does the primary literature still find a genuine economic effect? Finally, which covariates explain part of the variation in effect sizes between studies?</p>
+<p>The standard approach in MRA is to regress effect sizes on the standard error in the FAT-PET (Funnel-Asymmetry Precision-Effect Test) specification, and the variance in the PEESE (Precision-Effect Estimate with Standard Error) specification. Unfortunately, a large body of the literature covered in our study does not provide standard errors. The inverse square root of the sample size is considered a feasible alternative for missing standard errors in the MRA literature <span class="citation" data-cites="stanley2012">(<a href="#ref-stanley2012" role="doc-biblioref">Stanley/Doucouliagos, 2012</a>)</span>. The FAT-PET regression equation denotes:</p>
+<p><span class="math display">\[
+e_{ij} = \beta_0 + \beta_1 SE_{ij} + \beta_2 X_{ij} + \varepsilon_{ij}
+\]</span></p>
+<p>where <span class="math inline">\(e_{ij}\)</span> is estimate <span class="math inline">\(i\)</span> for the marginal effect of a rising wage share on aggregate demand in study <span class="math inline">\(j\)</span>, <span class="math inline">\(\beta_0\)</span> serves as an approximate measure for the “true” effect size adjusted for publication selection bias, <span class="math inline">\(SE\)</span> is the standard error (or an alternative measure for precision), and <span class="math inline">\(X\)</span> is a vector of controls. We group control variables into (1) publication characteristics, (2) estimation strategy, (3) meta-regression controls for time and space, (4) controls used by the studies in the investment or net export functions, and (5) other controls.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Full list of variables
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="tbl-tip">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Effect size (dep. variable)</td>
+<td>Marginal effect between the functional income distribution and aggregate demand</td>
+</tr>
+<tr class="even">
+<td><span class="hl hl-blue">Published</span></td>
+<td>Study published in peer-reviewed journal</td>
+</tr>
+<tr class="odd">
+<td><span class="hl hl-blue">Insignificant estimate</span></td>
+<td>Estimate contains insignificant effects for demand components</td>
+</tr>
+<tr class="even">
+<td><span class="hl hl-red">Tackling endogeneity</span></td>
+<td>Estimation strategy is suitable for addressing endogeneity</td>
+</tr>
+<tr class="odd">
+<td><span class="hl hl-red">Simultaneous estimation</span></td>
+<td>Simultaneous vs.&nbsp;additive estimation</td>
+</tr>
+<tr class="even">
+<td><span class="hl hl-red">Mean marginal effect</span></td>
+<td>Marginal effect is calculated at the mean over the total observation period</td>
+</tr>
+<tr class="odd">
+<td><span class="hl hl-red">Quarterly data</span></td>
+<td>Estimate is based on quarterly data</td>
+</tr>
+<tr class="even">
+<td><span class="hl hl-red">Capacity utilization</span></td>
+<td>Dependent variable is capacity utilization rather than GDP</td>
+</tr>
+<tr class="odd">
+<td><span class="hl hl-red">Real wages</span></td>
+<td>Real wages are used as measure of functional distribution</td>
+</tr>
+<tr class="even">
+<td><span class="hl hl-green">Early observation period</span></td>
+<td>Average year of observation period is before 1990</td>
+</tr>
+<tr class="odd">
+<td><span class="hl hl-green">OECD country</span></td>
+<td>Estimate is for an OECD country</td>
+</tr>
+<tr class="even">
+<td><span class="hl hl-brown">Profits (in I)</span></td>
+<td>Estimation controls for profits in I (profit share or profit rate)</td>
+</tr>
+<tr class="odd">
+<td><span class="hl hl-brown">Interest rate (in I)</span></td>
+<td>Estimation controls for interest rate in I</td>
+</tr>
+<tr class="even">
+<td><span class="hl hl-brown">Demand (in X)</span></td>
+<td>Estimation controls for demand in X</td>
+</tr>
+<tr class="odd">
+<td><span class="hl hl-brown">Profits (in X)</span></td>
+<td>Estimation controls for profits in X</td>
+</tr>
+<tr class="even">
+<td><span class="hl hl-brown">Unit labor costs (in X)</span></td>
+<td>Estimation controls for unit labor costs in X</td>
+</tr>
+<tr class="odd">
+<td><span class="hl hl-brown">Exchange rate (in X)</span></td>
+<td>Estimation controls for the exchange rate in X</td>
+</tr>
+<tr class="even">
+<td><span class="hl hl-cyan">Government spending</span></td>
+<td>Estimation controls for government spending</td>
+</tr>
+<tr class="odd">
+<td><span class="hl hl-cyan">Debt and credit</span></td>
+<td>Estimation controls for debt and credit in the consumption or investment function</td>
+</tr>
+<tr class="even">
+<td><span class="hl hl-cyan">Personal inequality</span></td>
+<td>Estimation controls for a measure of personal inequality</td>
+</tr>
+<tr class="odd">
+<td><span class="hl hl-cyan">Wealth effects</span></td>
+<td>Estimation controls for wealth effects</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-are-the-main-results-of-the-paper" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-are-the-main-results-of-the-paper">What are the main results of the paper?</h2>
+<p>Funnel plots show the estimated effect sizes and their precision from the literature for both total demand and domestic demand. As expected, estimates with a higher precision are clustered, while less precise estimates are more dispersed and some outliers are present.</p>
+<div class="cr-section column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-hist-tot">
+<div class="narrative">
+
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-hist-tot">
+<div class="narrative">
+<p>For total demand, the right-hand side of the distribution seems thinly populated, although almost half of the estimates are weakly positive (102 of 218 estimates). On average, total demand growth is profit-led with a mean estimate of about −0.14, although the lack of symmetry indicates possible publication selection bias in favor of profit-led results.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-hist-dom">
+<div class="narrative">
+<p>For domestic demand, there is a positive correlation between the wage share and demand in the majority of estimates. Domestic demand is estimated to be wage-led in 71% of our sample with a mean estimate of 0.27. This conforms with the consensus in previous literature reviews.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-hist-dom">
+<div class="narrative">
+
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-hist-tot" class="sticky">
+<p><img src="index_files/figure-html/hist-tot-1.svg" class="img-fluid"></p>
+</div>
+<div id="cr-hist-dom" class="sticky">
+<p><img src="index_files/figure-html/hist-dom-1.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+<p>The table below shows selected results from the MRA. For the total demand sample, the results indicate the presence of a statistically significant publication selection bias (see <span class="math inline">\(\beta_1\)</span>). Correcting for this bias, the FAT-PET fails to detect a statistically significant underlying effect. The PEESE confirms the statistically significant bias in favour of profit-led results, but also suggests that the mean beyond bias is statistically significantly profit-led. The mean beyond bias (-0.037) is slightly less negative than the sample mean (-0.14), which indicates that the negative effect of a change in the wage share on total demand would be smaller without publication selectivity.</p>
+<div class="tbl-classic">
+<table class="caption-top table">
+<caption>Regression results from MRA</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">FAT-PET<br>Total demand</th>
+<th style="text-align: center;">PEESE<br>Total demand</th>
+<th style="text-align: center;">FAT-PET<br>Domestic demand</th>
+<th style="text-align: center;">PEESE<br>Domestic demand</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Constant</td>
+<td style="text-align: center;">-0.025 (0.021)</td>
+<td style="text-align: center;">-0.037** (0.017)</td>
+<td style="text-align: center;">0.291*** (0.068)</td>
+<td style="text-align: center;">0.316*** (0.049)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\beta_1\)</span></td>
+<td style="text-align: center;">-0.675** (0.313)</td>
+<td style="text-align: center;">-4.181*** (1.592)</td>
+<td style="text-align: center;">0.006 (0.539)</td>
+<td style="text-align: center;">-2.868 (2.132)</td>
+</tr>
+<tr class="odd">
+<td>Sample mean</td>
+<td style="text-align: center;">0.140</td>
+<td style="text-align: center;">0.140</td>
+<td style="text-align: center;">0.272</td>
+<td style="text-align: center;">0.272</td>
+</tr>
+<tr class="even">
+<td>Observations</td>
+<td style="text-align: center;">218</td>
+<td style="text-align: center;">218</td>
+<td style="text-align: center;">360</td>
+<td style="text-align: center;">360</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tbl-note">
+<p>Robust standard errors (in parentheses) are clustered at the study level.<br>*** p &lt; 0.01, ** p &lt; 0.5, * p &lt; 0.1</p>
+</div>
+<p>For domestic demand, we find some genuine underlying effect for both FAT-PET and PEESE. The adjusted effect sizes of about 0.29 (FAT-PET) and 0.32 (PEESE) are higher than the sample mean of about 0.27, which confirms the funnel plot’s finding that domestic demand is wage-led. However, in contrast to total demand, we cannot detect statistically significant publication bias for this literature.</p>
+<p>In our paper, we check robustness of the results with various specifications. First, we estimate a linear mixed effects model, which captures both within- and between-study level heterogeneity in effect sizes. Second, we use non-linear tests of publication bias as suggested by <span class="citation" data-cites="ioannidisea2017">Ioannidis et al. (<a href="#ref-ioannidisea2017" role="doc-biblioref">2017</a>)</span> and <span class="citation" data-cites="andrews:2019">Andrews/Kasy (<a href="#ref-andrews:2019" role="doc-biblioref">2019</a>)</span>. Third, we exclude outliers and re-estimate our models.</p>
+</section>
+<section id="what-are-the-main-conclusions-from-this-paper" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-the-main-conclusions-from-this-paper">What are the main conclusions from this paper?</h2>
+<p>Our results support the findings from previous literature reviews in concluding that the link between functional income distribution and demand does, indeed, exist. The primary literature suggests total demand to be predominantly profit-led despite indications for missing wage-led estimates in the funnel plot. Domestic demand is found to be wage-led on average.</p>
+<p>These findings contribute to the growth models literature: After Fordist accumulation regimes were superseded by finance-dominated accumulation regimes, the long-term fall in wage shares in many industrialized countries entailed challenges to stabilize aggregate demand. While some countries were able to increase their international competitiveness and pursue an export strategy, others compensated falling labour shares with a rise in private debt to maintain demand. This led to current account imbalances that contributed to financial and economic crises. The relationship between the functional distribution of income and aggregate demand is thus also relevant for future economic stabilization.</p>
+<p><br>
+</p>
+<section id="references" class="level4">
+<h4 class="anchored" data-anchor-id="references">References</h4>
+<div id="refs" class="references csl-bib-body hanging-indent" style="font-size:1rem;" data-entry-spacing="0" role="list">
+<div id="ref-andrews:2019" class="csl-entry" role="listitem">
+Andrews, Isaiah/Kasy, Maximilian (2019). Identification of and Correction for Publication Bias. <em>American Economic Review</em>, <em>109</em>(8), 2766–2794. DOI: <a href="https://doi.org/10.1257/aer.20180310">10.1257/aer.20180310</a>
+</div>
+<div id="ref-autor2017" class="csl-entry" role="listitem">
+Autor, David/Dorn, David/Katz, Lawrence F./Patterson, Christina/Van Reenen, John (2017). Concentrating on the Fall of the Labor Share. <em>American Economic Review</em>, <em>107</em>(5), 180–185. DOI: <a href="https://doi.org/10.1257/aer.p20171102">10.1257/aer.p20171102</a>
+</div>
+<div id="ref-bhadurimarglin1990" class="csl-entry" role="listitem">
+Bhaduri, Amit/Marglin, Stephen (1990). <span class="nocase">Unemployment and the real wage: the economic basis for contesting political ideologies</span>. <em>Cambridge Journal of Economics</em>, <em>14</em>(4), 375–393. DOI: <a href="https://doi.org/10.1093/oxfordjournals.cje.a035141">10.1093/oxfordjournals.cje.a035141</a>
+</div>
+<div id="ref-ioannidisea2017" class="csl-entry" role="listitem">
+Ioannidis, John P. A./Stanley, T. D./Doucouliagos, Hristos (2017). The Power of Bias in Economics Research. <em>The Economic Journal</em>, <em>127</em>(605), F236–F265. DOI: <a href="https://doi.org/10.1111/ecoj.12461">10.1111/ecoj.12461</a>
+</div>
+<div id="ref-KaldorModelEconomicGrowth1957" class="csl-entry" role="listitem">
+Kaldor, Nicholas (1957). A <span>Model</span> of <span>Economic Growth</span>. <em>The Economic Journal</em>, <em>67</em>(268), 591–624. DOI: <a href="https://doi.org/10.2307/2227704">10.2307/2227704</a>
+</div>
+<div id="ref-kalecki1971" class="csl-entry" role="listitem">
+Kalecki, Michal (1971). <em>Selected essays on the dynamics of the capitalist economy 1933-1970</em>. CUP Archive.
+</div>
+<div id="ref-karabarbounis2013" class="csl-entry" role="listitem">
+Karabarbounis, Loukas/Neiman, Brent (2013). The Global Decline of the Labor Share. <em>The Quarterly Journal of Economics</em>, <em>129</em>(1), 61–103. DOI: <a href="https://doi.org/10.1093/qje/qjt032">10.1093/qje/qjt032</a>
+</div>
+<div id="ref-robinson:1956" class="csl-entry" role="listitem">
+Robinson, Joan (1956). <em>The accumulation of capital</em>. Macmillan &amp; Co Ltd, London.
+</div>
+<div id="ref-stanley2012" class="csl-entry" role="listitem">
+Stanley, T. D./Doucouliagos, Hristos (2012). <em>Meta-regression analysis in economics and business</em>. Routledge, London; New York.
+</div>
+<div id="ref-stockhammer2017" class="csl-entry" role="listitem">
+Stockhammer, Engelbert (2017). Wage-Led Versus Profit-Led Demand: What Have We Learned? A Kaleckian–Minskyan View. <em>Review of Keynesian Economics</em>, <em>5</em>(1), 25–42. DOI: <a href="https://doi.org/10.4337/roke.2017.01.03">10.4337/roke.2017.01.03</a>
+</div>
+</div>
+<p><br>
+</p>
+</section>
+</section>
+</section>
+<section id="info" class="level1">
+<h1></h1>
+<p>This document was created with <a href="https://quarto.org" target="_blank">Quarto</a>, <a href="https://closeread.netlify.app" target="_blank">closeread</a> and <a href="https://www.r-project.org" target="_blank">R</a>.</p>
+<p><br>
+</p>
+<p>The webpage is based on an article written by Quirin Dammerer, Ludwig List, Miriam Rehm and Matthias Schnetzer that has been published in the <a href="https://doi.org/10.1111/joes.12614" target="_blank">Journal of Economic Surveys</a>.</p>
+<p><br>
+</p>
+<p><i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:matthias.schnetzer%20(at)%20akwien.at" target="_blank">matthias.schnetzer@akwien.at</a>   <i class="fa-solid fa-globe" aria-label="globe"></i> <a href="https://mschnetzer.github.io/" target="_blank">mschnetzer.github.io</a>   <i class="fa-brands fa-twitter" aria-label="twitter"></i> <a href="https://x.com/matschnetzer" target="_blank">matschnetzer</a></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
