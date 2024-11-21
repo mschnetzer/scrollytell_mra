@@ -3,7 +3,7 @@ title: "Macroeconomic effects of a declining wage share"
 author: 
   - name: Quirin Dammerer
     orcid: 0000-0002-7061-971X
-  - name: Ludwid List
+  - name: Ludwig List
     orcid: 0000-0003-3824-1363
   - name: Miriam Rehm
     orcid: 0000-0003-3174-4304
@@ -144,7 +144,7 @@ UK bucks the trend and exhibits a remarkably stable wage share aside from some f
 
 Theoretical models of the relationship between the functional distribution of income and aggregate demand were pioneered by economists affiliated with the University of Cambridge such as Michal @kalecki1971, Nicholas @KaldorModelEconomicGrowth1957, and Joan @robinson:1956. The quintessence of the early models is that the growth of demand in a (closed) economy reacts positively to an increase in the wage share, which the current literature terms "wage-led growth" [@stockhammer2017].
 
-@bhadurimarglin1990 developed a model of different growth regimes. Investment $I$ is a function of autonomous investment $g_0$, capacity utilization $u$, and expected profitability,that is, the profit share $\pi$:
+@bhadurimarglin1990 developed a model of different growth regimes. Investment $I$ is a function of autonomous investment $g_0$, capacity utilization $u$, and expected profitability, that is, the profit share $\pi$:
 
 $$ 
 g_i = g_0 + \alpha\pi + \beta u
@@ -299,7 +299,7 @@ data  |> filter(!is.na(dom_demand)) |>
   scale_x_continuous(limits = c(-2, 3.5), breaks = seq(-2, 3, 1)) +
   annotate("text", y = 40, x = mean.dom + 0.1, size = 6, hjust = 0, color = "firebrick",
            label = paste0("Mean: ",round(mean.dom, 2)), family = "Barlow Condensed") +
-  labs(x = "Estimatess for domestic demand", y = expression(sqrt(n))) +
+  labs(x = "Estimates for domestic demand", y = expression(sqrt(n))) +
   theme_minimal(base_family = "Barlow Condensed", base_size = 18) +
   theme(
     panel.grid.minor = element_blank(),
